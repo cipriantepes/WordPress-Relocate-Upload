@@ -61,8 +61,6 @@ function relocate_upload_js_action() {
 	$new_path = untrailingslashit(SERVER_DOC_ROOT) . $ru_folders[$folder]['path'] . basename($attachment_path);
 	$new_path = replace_month_year( $new_path, $attachment_date );
 
-	var_dump(file_exists($new_path), basename($attachment_path), '===>', $attachment_path);
-
 	// attempt to move the file
 	if( file_exists($new_path) ) {
 		$result = "FAIL: file already exists! Cannot overwrite.";

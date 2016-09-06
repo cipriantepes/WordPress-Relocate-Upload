@@ -2,8 +2,8 @@
 Contributors: alanft,tberneman
 Tags: admin, upload, folder, relocate, move
 Requires at least: 2.8
-Tested up to: 4.2.4
-Stable tag: 0.24
+Tested up to: 4.6
+Stable tag: 0.24.1
 
 Wordpress uploads media to one pre-set folder. Relocate Upload lets you switch media to other folders.
 
@@ -27,6 +27,9 @@ When creating new folders,
 2. A simple settings page to define the folder locations.
 
 == Changelog ==
+0.2.4.1 - Tested with WordPress Version 4.6
+          Tested on WordPress Multisite
+          Fix paths and url to file
 0.24 - Tested compatibility up to WordPress Version 4.2.4
        Fixed several path issues.
 	   Added generic "FAIL" message instead of not reporting anything.

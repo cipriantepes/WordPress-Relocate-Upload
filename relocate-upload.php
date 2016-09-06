@@ -2,7 +2,7 @@
 /*
 Plugin Name: Relocate Upload Modified
 Plugin URI: http://wpdev.net/plugins/relocate-upload/
-Description: Moves uploads to special folders. Working version modified by Ciprian Tepes.
+Description: Moves uploads to special folders.
 Author: WP Dev Ciprian Tepes
 Creator: Alan Trewartha & Tim Berneman
 Version: 0.24.1
@@ -60,6 +60,8 @@ function relocate_upload_js_action() {
 	$folder = $_GET['ru_folder'];
 	$new_path = untrailingslashit(SERVER_DOC_ROOT) . $ru_folders[$folder]['path'] . basename($attachment_path);
 	$new_path = replace_month_year( $new_path, $attachment_date );
+
+//	var_dump(file_exists($new_path), basename($attachment_path), '===>', $attachment_path);
 
 	// attempt to move the file
 	if( file_exists($new_path) ) {
@@ -217,7 +219,7 @@ function relocate_upload_menu( $form_fields, $post ) {
 // put in the options page
 add_action ( 'admin_menu', 'RU_admin_items' );
 function RU_admin_items() {
-	add_options_page( "Relocate Upload", "Relocate Upload", 1, __FILE__, "RU_admin_options" );
+	add_options_page( "Relocate Upload", "Relocate Upload", 'manage_options', __FILE__, "RU_admin_options" );
 }
 
 function RU_admin_options() {
@@ -269,7 +271,7 @@ function RU_admin_options() {
 	<div class="wrap">
 	<div id="icon-options-general" class="icon32"><br /></div>
 	<h2>Relocate Upload &ndash; Locations</h2>
-	<form action="options-general.php?page=relocate-upload/relocate-upload.php" method="POST">
+	<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
 	<div>
 		<p>Paths are relative to your blog's root folder: <b><?php echo SERVER_DOC_ROOT; ?></b></p>
 		<ul id="ru_list">

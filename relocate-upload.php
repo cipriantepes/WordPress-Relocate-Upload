@@ -58,7 +58,7 @@ function relocate_upload_js_action() {
 
 	// find new path for attachment
 	$folder = $_GET['ru_folder'];
-	$new_path = untrailingslashit(SERVER_DOC_ROOT) . $ru_folders[$folder]['path'] . basename($attachment_path);
+	$new_path = trailingslashit(SERVER_DOC_ROOT) . $ru_folders[$folder]['path'] . basename($attachment_path);
 	$new_path = replace_month_year( $new_path, $attachment_date );
 
 //	var_dump(file_exists($new_path), basename($attachment_path), '===>', $attachment_path);
@@ -348,5 +348,5 @@ add_filter( 'wp_get_attachment_url', "wp_get_attachment_url_absolute_path_fix" )
 function wp_get_attachment_url_absolute_path_fix( $url ) {
 	$protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
 	$host = parse_url($url, PHP_URL_HOST);
-	return preg_replace( '#(http://.*?/)[.]*?' . SERVER_DOC_ROOT . '#', $protocol . $host . '/' , $url );
+	return preg_replace( '#(https?://.*?/)[.]*?' . SERVER_DOC_ROOT . '/?#', $protocol . $host . '/' , $url );
 }
